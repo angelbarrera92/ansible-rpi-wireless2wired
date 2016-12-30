@@ -1,0 +1,25 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# the internal (wired) network interface
+allow-hotplug {{ LOCAL_IFACE }}
+iface {{ LOCAL_IFACE }} inet static
+    address {{ LOCAL_ADDRESS }}
+    netmask {{ LOCAL_NETMASK }}
+    network {{ LOCAL_NETWORK }}
+    gateway {{ LOCAL_GATEWAY }}
+    broadcast {{ LOCAL_BROADCAST }}
+
+# the external (wifi) interface
+auto {{ INET_IFACE }}
+allow-hotplug {{ INET_IFACE }}
+iface {{ INET_IFACE }} inet static
+    address {{ INET_ADDRESS }}
+    netmask {{ INET_NETMASK }}
+    network {{ INET_NETWORK }}
+    gateway {{ INET_GATEWAY }}
+    broadcast {{ INET_BROADCAST }}
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+pre-up iptables-restore < /etc/network/iptables

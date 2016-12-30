@@ -1,0 +1,4 @@
+---
+- include: interfaces.yml
+- include: iptables.yml
+- include: allow_forward.yml

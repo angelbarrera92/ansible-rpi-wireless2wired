@@ -1,0 +1,26 @@
+---
+
+- name: Ansible Playbook for configuring a bride from wireless-to-wired connection
+  hosts: rpis
+  remote_user: pi
+  become: yes
+  vars:
+    LOCAL_IFACE: eth0
+    LOCAL_ADDRESS: 192.168.2.1
+    LOCAL_NETMASK: 255.255.255.0
+    LOCAL_NETWORK: 192.168.2.0
+    LOCAL_GATEWAY: 192.168.2.1
+    LOCAL_BROADCAST: 192.168.2.255
+
+    INET_IFACE: wlan0
+    INET_ADDRESS: 192.168.1.101
+    INET_NETMASK: 255.255.255.0
+    INET_NETWORK: 192.168.1.0
+    INET_GATEWAY: 192.168.1.1
+    INET_BROADCAST: 192.168.1.255
+    WIFI_SSID: 
+    WIFI_PASSWORD: 
+  roles:
+  - role: wireless-to-wired
+  post_tasks:
+  - command: /sbin/shutdown -h now

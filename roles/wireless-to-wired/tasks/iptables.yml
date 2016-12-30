@@ -1,0 +1,8 @@
+- 
+  name: "Create iptables definition"
+  template: 
+      src: iptables.j2
+      dest: /etc/network/iptables
+      owner: root
+      group: root
+      mode: 0644

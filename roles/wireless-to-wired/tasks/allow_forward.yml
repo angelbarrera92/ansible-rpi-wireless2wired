@@ -1,0 +1,9 @@
+--- 
+- 
+  name: "Allow IP Forwaring"
+  sysctl: 
+    name: net.ipv4.ip_forward
+    reload: true
+    state: present
+    sysctl_set: true
+    value: 1
